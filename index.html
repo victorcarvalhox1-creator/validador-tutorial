@@ -246,23 +246,39 @@
     <!-- TOC -->
     <nav class="toc" id="toc">
       <h4>Conteúdo</h4>
-      <a href="#inicio">1 · Primeiros passos</a>
-      <a href="#empresas">2 · Empresas</a>
-      <a href="#credenciais">3 · Credenciais dos portais</a>
-      <a href="#notas">4 · Notas Fiscais</a>
-      <a href="#pgdas">5 · PGDAS-D</a>
-      <a href="#das">6 · Calcular DAS</a>
-      <a href="#presumido">7 · Lucro Presumido</a>
-      <a href="#extrato">8 · Extrato Fiscal</a>
-      <a href="#ia">9 · IA Fiscal</a>
-      <a href="#config">10 · Configurações</a>
-      <a href="#suporte">11 · Suporte</a>
+      <a href="#visao">1 · Visão geral</a>
+      <a href="#inicio">2 · Primeiros passos</a>
+      <a href="#empresas">3 · Empresas</a>
+      <a href="#credenciais">4 · Credenciais dos portais</a>
+      <a href="#notas">5 · Notas Fiscais</a>
+      <a href="#pgdas">6 · PGDAS-D</a>
+      <a href="#das">7 · Calcular DAS</a>
+      <a href="#fator-r">8 · Fator R</a>
+      <a href="#presumido">9 · Lucro Presumido</a>
+      <a href="#extrato">10 · Extrato Fiscal</a>
+      <a href="#config">11 · Configurações</a>
+      <a href="#suporte">12 · Suporte</a>
     </nav>
 
     <main>
 
-      <section id="inicio">
+      <section id="visao">
         <div class="num">01</div>
+        <h2>O que é o Validador Fiscal</h2>
+        <p>O Validador Fiscal é um sistema de <b>validação e conferência de valores fiscais</b>: ele cruza o que foi declarado (PGDAS, DAS) com o que apura a partir das notas, apontando divergências antes da entrega.</p>
+        <div class="card">
+          <h3><span class="dot"></span>Para que serve</h3>
+          <ul class="bullets">
+            <li><b>Validar valores:</b> compara DAS calculado x declarado, receitas e retenções, destacando diferenças.</li>
+            <li><b>Simular cenários:</b> você pode lançar <b>valores fictícios</b> (notas/receitas) para simular a apuração e ver o impacto antes de oficializar.</li>
+            <li><b>Automatizar o cálculo:</b> apura automaticamente o <b>Simples Nacional</b> (faixas, anexos e Fator R) e o <b>Lucro Presumido</b> (IRPJ, CSLL, PIS, COFINS).</li>
+          </ul>
+        </div>
+        <div class="tip"><b>Em resumo:</b> importe ou lance os dados, deixe o sistema calcular, e use as divergências para conferir e corrigir.</div>
+      </section>
+
+      <section id="inicio">
+        <div class="num">02</div>
         <h2>Primeiros passos</h2>
         <p>Ao abrir o Validador Fiscal pela primeira vez, você verá a tela de ativação. A licença libera todos os módulos do sistema.</p>
         <div class="card">
@@ -287,7 +303,7 @@
       </section>
 
       <section id="empresas">
-        <div class="num">02</div>
+        <div class="num">03</div>
         <h2>Cadastrando empresas</h2>
         <p>Tudo no sistema gira em torno das empresas. Cadastre cada cliente antes de importar notas ou calcular tributos. Na tela <code>Empresas</code> você vê a lista cadastrada e, no topo, os botões <code>+ Nova Empresa</code>, <code>Importar Excel</code> (cadastro em massa) e <code>Exportar Modelo</code>.</p>
         <figure class="shot">
@@ -312,7 +328,7 @@
       </section>
 
       <section id="credenciais">
-        <div class="num">03</div>
+        <div class="num">04</div>
         <h2>Credenciais dos portais</h2>
         <p>Para baixar notas automaticamente, o sistema precisa das credenciais de acesso de cada empresa ao Portal Nacional NFS-e. Há dois modos.</p>
         <div class="card">
@@ -335,7 +351,7 @@
       </section>
 
       <section id="notas">
-        <div class="num">04</div>
+        <div class="num">05</div>
         <h2>Notas Fiscais</h2>
         <p>Em <code>Simples Nacional ▸ Notas Fiscais</code> você importa, baixa e consulta as NFS-e e NF-e de cada empresa. No topo ficam as ações <code>+ Nova Nota Manual</code>, <code>Importar XML/ZIP</code>, <code>Baixar via SIEG</code>, <code>Portal Nacional NFS-e</code> e <code>Excluir em Lote</code>. Os filtros (Empresa, Ano, Mês, Tipo) e os painéis <b>CFOP</b>/<b>NCM</b> ajudam na análise.</p>
         <figure class="shot">
@@ -360,11 +376,15 @@
             <li>O sistema baixa os XMLs e importa automaticamente.</li>
           </ol>
         </div>
-        <div class="tip"><b>Como funciona:</b> empresas com <i>certificado</i> usam a API (rápido); as de <i>login/senha</i> usam a automação do portal. Há ainda <code>Baixar via SIEG</code> para quem usa a SIEG.</div>
+        <div class="card">
+          <h3><span class="dot"></span>Baixar via SIEG</h3>
+          <p>Para usar <code>Baixar via SIEG</code>, primeiro cadastre seu <b>usuário e senha do SIEG</b> em <code>Ferramentas ▸ Configurações</code> (seção Automação SIEG). Sem essas credenciais, o download não autentica.</p>
+        </div>
+        <div class="tip"><b>Como funciona:</b> empresas com <i>certificado</i> usam a API oficial (rápido, sem captcha); as de <i>login/senha</i> usam a automação do Portal Nacional.</div>
       </section>
 
       <section id="pgdas">
-        <div class="num">05</div>
+        <div class="num">06</div>
         <h2>Importar PGDAS-D</h2>
         <p>O módulo <code>Importar PGDAS-D</code> lê as declarações do Simples Nacional (PDF) e consolida o histórico de receitas automaticamente — para validar e comparar com o que o sistema apurou.</p>
         <div class="card">
@@ -381,10 +401,11 @@
           <img src="img/06-pgdas.png" alt="Módulo Importar PGDAS-D" loading="lazy">
           <figcaption>Importar PGDAS-D — seleção de PDFs, análise e preview das receitas antes de gravar.</figcaption>
         </figure>
+        <div class="tip"><b>Baixar via e-CAC é semi-automático:</b> o sistema abre o e-CAC e conduz a navegação, mas <b>você precisa resolver os captchas</b> apresentados (no login Gov.BR e durante o acesso). Acompanhe a janela e resolva quando solicitado — depois o download segue sozinho.</div>
       </section>
 
       <section id="das">
-        <div class="num">06</div>
+        <div class="num">07</div>
         <h2>Calcular DAS (Simples Nacional)</h2>
         <p>Com as notas importadas, o sistema apura o DAS conforme a LC 123/06 e a Resolução CGSN 140/18, e compara com o PGDAS declarado.</p>
         <div class="card">
@@ -401,11 +422,29 @@
           <img src="img/07-das.png" alt="Módulo Calcular DAS" loading="lazy">
           <figcaption>Calcular DAS — cartões de apuração e tabela por competência com DAS calculado x declarado.</figcaption>
         </figure>
-        <div class="tip"><b>Dica:</b> divergências entre o apurado e o declarado aparecem na coluna <i>Divergência</i> — ótimo para conferência antes de entregar. Atividades do Anexo V usam o <code>Fator R do Mês</code>.</div>
+        <div class="card">
+          <h3><span class="dot"></span>Memória de cálculo</h3>
+          <p>Clique na <b>linha de um mês</b> e em <code>Visualizar Memória</code> para abrir o detalhamento completo da apuração daquela competência — base, faixa, parcela a deduzir, alíquota efetiva e a repartição dos tributos. É a prova de como cada valor foi obtido.</p>
+        </div>
+        <div class="tip"><b>Dica:</b> divergências entre o apurado e o declarado aparecem na coluna <i>Divergência</i> — ótimo para conferência antes de entregar.</div>
+      </section>
+
+      <section id="fator-r">
+        <div class="num">08</div>
+        <h2>Fator R</h2>
+        <p>Para atividades sujeitas ao <b>Fator R</b> (serviços que podem cair no Anexo III ou no Anexo V), o enquadramento depende da razão entre <b>folha de pagamento</b> e <b>receita bruta</b> dos últimos 12 meses. Esses recursos ficam na própria tela <code>Calcular DAS</code>.</p>
+        <div class="card">
+          <h3><span class="dot"></span>Quanto de folha para o Fator R alvo</h3>
+          <p>O botão <code>Fator R do Mês</code> faz o <b>cálculo reverso automático</b>: mostra quanto de folha seria necessário para o Fator R atingir <b>29%</b> e enquadrar a empresa no Anexo III. Ótimo para simulação e planejamento.</p>
+        </div>
+        <div class="card">
+          <h3><span class="dot"></span>Lançar folha avulsa</h3>
+          <p>Use <code>Lançar Folha</code> para informar uma <b>folha avulsa</b> do mês (quando ela não vem de uma fonte importada), compondo o Fator R daquela competência.</p>
+        </div>
       </section>
 
       <section id="presumido">
-        <div class="num">07</div>
+        <div class="num">09</div>
         <h2>Lucro Presumido</h2>
         <p>Para empresas no Lucro Presumido, o sistema calcula os tributos federais e o ISS a partir das notas e da atividade.</p>
         <div class="card">
@@ -419,7 +458,7 @@
       </section>
 
       <section id="extrato">
-        <div class="num">08</div>
+        <div class="num">10</div>
         <h2>Extrato Fiscal</h2>
         <p>O <code>Extrato Fiscal</code> reúne, em um só lugar, a movimentação fiscal da empresa por período — mês a mês, com receita, RBT12, faixa, alíquota efetiva e DAS calculado x declarado.</p>
         <div class="card">
@@ -436,34 +475,19 @@
         </figure>
       </section>
 
-      <section id="ia">
-        <div class="num">09</div>
-        <h2>IA Fiscal</h2>
-        <p>Em <code>Ferramentas ▸ IA Fiscal</code> você faz perguntas em linguagem natural sobre os dados das empresas.</p>
-        <div class="card">
-          <h3><span class="dot"></span>Como usar</h3>
-          <ol class="steps">
-            <li>Abra a IA Fiscal.</li>
-            <li>Digite sua pergunta (ex.: <i>"qual o faturamento da empresa X em 2025?"</i>).</li>
-            <li>A IA responde com base nos dados já importados no sistema.</li>
-          </ol>
-        </div>
-      </section>
-
       <section id="config">
-        <div class="num">10</div>
+        <div class="num">11</div>
         <h2>Configurações</h2>
-        <p>Em <code>Ferramentas ▸ Configurações</code> ficam as chaves de integração e os parâmetros de automação:</p>
+        <p>Em <code>Ferramentas ▸ Configurações</code> ficam os parâmetros das automações. É aqui que você habilita o download via SIEG:</p>
         <ul class="bullets">
-          <li><b>Inteligência Artificial (Groq):</b> chave de API e modelo do assistente fiscal.</li>
-          <li><b>Automação SIEG:</b> login, senha, pasta de download, navegador e modo <i>headless</i> (executar oculto).</li>
+          <li><b>Automação SIEG:</b> login, senha, pasta de download, navegador e modo <i>headless</i> (executar oculto) — necessários para o <code>Baixar via SIEG</code> das Notas.</li>
           <li><b>Automação e-Auditoria:</b> login usado na classificação automática de NCMs.</li>
         </ul>
         <div class="tip"><b>Atenção:</b> esses campos guardam credenciais — preencha apenas no seu computador e clique em <code>Salvar</code>.</div>
       </section>
 
       <section id="suporte">
-        <div class="num">11</div>
+        <div class="num">12</div>
         <h2>Suporte</h2>
         <p>Precisa de ajuda? O botão <b>Suporte</b>, no rodapé da barra lateral, abre o contato direto com a equipe VL.IA.</p>
         <div class="tip"><b>Atalho:</b> o botão <b>Tutorial</b> (logo acima do Suporte) traz você de volta a esta página a qualquer momento.</div>
