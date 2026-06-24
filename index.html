@@ -386,7 +386,7 @@
       <section id="pgdas">
         <div class="num">06</div>
         <h2>Importar PGDAS-D</h2>
-        <p>O módulo <code>Importar PGDAS-D</code> lê as declarações do Simples Nacional (PDF) e consolida o histórico de receitas automaticamente — para validar e comparar com o que o sistema apurou.</p>
+        <p>O módulo <code>Importar PGDAS-D</code> lê a <b>declaração do Simples Nacional</b> (PDF) e consolida o histórico de receitas automaticamente. É assim que você traz os <b>valores retroativos</b> dos meses anteriores — essenciais para compor o <b>RBT12</b> (receita bruta dos últimos 12 meses) e, com ele, a faixa e a alíquota corretas da apuração.</p>
         <div class="card">
           <h3><span class="dot"></span>Importação</h3>
           <ol class="steps">
@@ -424,23 +424,36 @@
         </figure>
         <div class="card">
           <h3><span class="dot"></span>Memória de cálculo</h3>
-          <p>Clique na <b>linha de um mês</b> e em <code>Visualizar Memória</code> para abrir o detalhamento completo da apuração daquela competência — base, faixa, parcela a deduzir, alíquota efetiva e a repartição dos tributos. É a prova de como cada valor foi obtido.</p>
+          <p>Clique na <b>linha de um mês</b> e em <code>Visualizar Memória</code> para abrir o detalhamento completo da apuração daquela competência — faixa, alíquota nominal e efetiva, parcela a deduzir, Fator R e a repartição dos tributos. É a prova de como cada valor foi obtido.</p>
         </div>
+        <figure class="shot">
+          <img src="img/11-memoria-das.png" alt="Memória de cálculo do Simples Nacional" loading="lazy">
+          <figcaption>Visualizar Memória — faixa, alíquotas, parcela a deduzir, Fator R e a repartição dos tributos da competência.</figcaption>
+        </figure>
         <div class="tip"><b>Dica:</b> divergências entre o apurado e o declarado aparecem na coluna <i>Divergência</i> — ótimo para conferência antes de entregar.</div>
       </section>
 
       <section id="fator-r">
         <div class="num">08</div>
         <h2>Fator R</h2>
-        <p>Para atividades sujeitas ao <b>Fator R</b> (serviços que podem cair no Anexo III ou no Anexo V), o enquadramento depende da razão entre <b>folha de pagamento</b> e <b>receita bruta</b> dos últimos 12 meses. Esses recursos ficam na própria tela <code>Calcular DAS</code>.</p>
+        <p>Para serviços sujeitos ao <b>Fator R</b> (que podem cair no Anexo III ou no Anexo V), o enquadramento depende da razão entre a <b>folha (FS12)</b> e a <b>receita (RBT12)</b> dos últimos 12 meses. Acesse pelo botão <code>Fator R do Mês</code>, na tela <code>Calcular DAS</code>.</p>
         <div class="card">
-          <h3><span class="dot"></span>Quanto de folha para o Fator R alvo</h3>
-          <p>O botão <code>Fator R do Mês</code> faz o <b>cálculo reverso automático</b>: mostra quanto de folha seria necessário para o Fator R atingir <b>29%</b> e enquadrar a empresa no Anexo III. Ótimo para simulação e planejamento.</p>
+          <h3><span class="dot"></span>Fator R do mês</h3>
+          <p>O painel detalha o <b>RBT12</b> e o <b>FS12</b> (folha + INSS dos 12 meses), o <b>Fator R atual</b> e um alerta quando está abaixo do limite (risco de Anexo V). Traz ainda a <b>Análise de Vantagem — Anexo III vs V</b>: avalia se compensa pagar INSS + IRRF sobre o pró-labore para tributar no Anexo III.</p>
         </div>
+        <figure class="shot">
+          <img src="img/09-fator-r.png" alt="Painel do Fator R do mês" loading="lazy">
+          <figcaption>Fator R do mês — RBT12, FS12, Fator R atual e a análise de vantagem Anexo III x V.</figcaption>
+        </figure>
         <div class="card">
           <h3><span class="dot"></span>Lançar folha avulsa</h3>
-          <p>Use <code>Lançar Folha</code> para informar uma <b>folha avulsa</b> do mês (quando ela não vem de uma fonte importada), compondo o Fator R daquela competência.</p>
+          <p>Use <code>Lançar Folha</code> para informar a <b>Folha Total</b> e o <b>INSS/CPP</b> do mês (entram no Fator R / FS12). O <b>pró-labore</b> é opcional — usado apenas na análise de vantagem.</p>
         </div>
+        <figure class="shot">
+          <img src="img/10-lancar-folha.png" alt="Janela Lançar Folha de Pagamento" loading="lazy">
+          <figcaption>Lançar Folha — folha avulsa do mês que compõe o Fator R / FS12.</figcaption>
+        </figure>
+        <div class="tip"><b>Por que 29%?</b> O limite legal do Fator R é 28%; o sistema trabalha com <b>29% como margem de segurança</b> ao indicar quanto de folha falta para enquadrar no Anexo III.</div>
       </section>
 
       <section id="presumido">
