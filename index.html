@@ -195,6 +195,20 @@
     vertical-align: middle;
   }
 
+  /* ---- Screenshots ---- */
+  figure.shot { margin: 20px 0 24px; }
+  figure.shot img {
+    width: 100%; display: block;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    box-shadow: 0 14px 34px rgba(0, 0, 0, .38);
+  }
+  figure.shot figcaption {
+    margin-top: 10px; text-align: center;
+    font-family: var(--mono); font-size: 12px;
+    color: var(--muted);
+  }
+
   /* ---- Footer ---- */
   footer {
     border-top: 1px solid var(--line);
@@ -254,30 +268,47 @@
         <div class="card">
           <h3><span class="dot"></span>Ativando o sistema</h3>
           <ol class="steps">
-            <li>Na tela de ativação, copie o seu <b>código de identificação</b>.</li>
-            <li>Clique em <code>Solicitar chave</code> para falar com o suporte e receber sua chave de ativação.</li>
-            <li>Cole a chave no campo indicado e confirme.</li>
+            <li>Na tela de ativação, veja o <b>Identificador desta máquina</b> e clique em <code>Copiar Código</code>.</li>
+            <li>Clique em <code>Falar com o Suporte</code> para enviar o código e receber sua <b>chave de ativação</b>.</li>
+            <li>Cole a chave no campo <b>Chave de Ativação</b> e clique em <code>Ativar Sistema</code>.</li>
             <li>Pronto — o sistema abre no <b>Dashboard</b>, sua visão geral.</li>
           </ol>
         </div>
-        <div class="tip"><b>Dica:</b> a navegação fica na barra lateral esquerda. Os grupos <i>Simples Nacional</i>, <i>Lucro Presumido</i> e <i>Ferramentas</i> expandem ao clicar.</div>
+        <figure class="shot">
+          <img src="img/01-ativacao.png" alt="Tela de ativação do Validador Fiscal" loading="lazy">
+          <figcaption>Tela de ativação: identificador da máquina, botões Copiar Código / Falar com o Suporte e campo da chave.</figcaption>
+        </figure>
+        <p>Depois de ativar, o <b>Dashboard</b> mostra um panorama por empresa: contadores de DAS OK, sem DAS declarado e com divergência, além de um cartão por empresa com os botões <code>Validar</code>, <code>Publicar</code> e <code>Histórico</code>.</p>
+        <figure class="shot">
+          <img src="img/02-dashboard.png" alt="Dashboard Fiscal do sistema" loading="lazy">
+          <figcaption>Dashboard Fiscal — visão geral por empresa e indicadores do mês de referência.</figcaption>
+        </figure>
+        <div class="tip"><b>Dica:</b> a navegação fica na barra lateral esquerda. Os grupos <i>Simples Nacional</i>, <i>Lucro Presumido</i> e <i>Ferramentas</i> expandem ao clicar. No rodapé ficam <b>Tutorial</b>, <b>Suporte</b> e <b>Sair</b>.</div>
       </section>
 
       <section id="empresas">
         <div class="num">02</div>
         <h2>Cadastrando empresas</h2>
-        <p>Tudo no sistema gira em torno das empresas. Cadastre cada cliente antes de importar notas ou calcular tributos.</p>
+        <p>Tudo no sistema gira em torno das empresas. Cadastre cada cliente antes de importar notas ou calcular tributos. Na tela <code>Empresas</code> você vê a lista cadastrada e, no topo, os botões <code>+ Nova Empresa</code>, <code>Importar Excel</code> (cadastro em massa) e <code>Exportar Modelo</code>.</p>
+        <figure class="shot">
+          <img src="img/03-empresas-lista.png" alt="Módulo Empresas — lista de empresas cadastradas" loading="lazy">
+          <figcaption>Módulo Empresas: lista cadastrada (clique numa linha para editar) e ações no topo.</figcaption>
+        </figure>
         <div class="card">
           <h3><span class="dot"></span>Nova empresa</h3>
           <ol class="steps">
-            <li>No menu lateral, clique em <code>Empresas</code>.</li>
-            <li>Clique em <b>Nova empresa</b> e informe <b>CNPJ</b> e <b>Razão Social</b>.</li>
-            <li>Escolha o <b>regime</b>: Simples Nacional ou Lucro Presumido.</li>
-            <li>Para o Simples, selecione o <b>anexo</b> (I a V) e o tipo de atividade.</li>
-            <li>Salve. A empresa passa a aparecer em todos os módulos.</li>
+            <li>Clique em <code>+ Nova Empresa</code>.</li>
+            <li>Informe o <b>CNPJ</b> (a pontuação é aplicada automaticamente enquanto você digita) e a <b>Razão Social</b>.</li>
+            <li>Escolha o <b>Regime</b>: Simples Nacional ou Lucro Presumido.</li>
+            <li>No Simples, marque o(s) <b>Anexo(s)</b> (I a V); no Lucro Presumido, escolha o <b>Tipo de Atividade</b>.</li>
+            <li>Clique em <code>Salvar</code>. A empresa passa a aparecer em todos os módulos.</li>
           </ol>
         </div>
-        <div class="tip"><b>Importante:</b> o regime define quais cálculos ficam disponíveis. Você pode ajustá-lo depois editando a empresa.</div>
+        <figure class="shot">
+          <img src="img/04-nova-empresa.png" alt="Formulário de cadastro de nova empresa" loading="lazy">
+          <figcaption>Cadastro de empresa — CNPJ com máscara automática, regime e anexos do Simples.</figcaption>
+        </figure>
+        <div class="tip"><b>Importante:</b> o regime define quais cálculos ficam disponíveis. Para cadastrar muitas empresas de uma vez, use <code>Exportar Modelo</code>, preencha a planilha e importe com <code>Importar Excel</code>.</div>
       </section>
 
       <section id="credenciais">
@@ -306,11 +337,15 @@
       <section id="notas">
         <div class="num">04</div>
         <h2>Notas Fiscais</h2>
-        <p>Em <code>Simples Nacional ▸ Notas Fiscais</code> você importa, baixa e consulta as NFS-e e NF-e de cada empresa.</p>
+        <p>Em <code>Simples Nacional ▸ Notas Fiscais</code> você importa, baixa e consulta as NFS-e e NF-e de cada empresa. No topo ficam as ações <code>+ Nova Nota Manual</code>, <code>Importar XML/ZIP</code>, <code>Baixar via SIEG</code>, <code>Portal Nacional NFS-e</code> e <code>Excluir em Lote</code>. Os filtros (Empresa, Ano, Mês, Tipo) e os painéis <b>CFOP</b>/<b>NCM</b> ajudam na análise.</p>
+        <figure class="shot">
+          <img src="img/05-notas.png" alt="Módulo de Notas Fiscais" loading="lazy">
+          <figcaption>Notas Fiscais — ações de importação/download no topo, filtros e total do período.</figcaption>
+        </figure>
         <div class="card">
           <h3><span class="dot"></span>Importar XML manualmente</h3>
           <ol class="steps">
-            <li>Clique em <b>Importar documento</b>.</li>
+            <li>Clique em <code>Importar XML/ZIP</code>.</li>
             <li>Selecione um ou vários arquivos <code>.xml</code> ou <code>.zip</code>.</li>
             <li>O sistema identifica o tipo (NFS-e / NF-e), importa e ignora duplicatas.</li>
           </ol>
@@ -318,44 +353,55 @@
         <div class="card">
           <h3><span class="dot"></span>Baixar do Portal Nacional</h3>
           <ol class="steps">
-            <li>Clique em <b>Portal Nacional</b>.</li>
+            <li>Clique em <code>Portal Nacional NFS-e</code>.</li>
             <li>Informe a <b>competência</b> (mês/ano) — ou um intervalo De/Até.</li>
             <li>Escolha <b>Emitidas</b> ou <b>Recebidas</b>.</li>
             <li>Marque as empresas e clique em <b>Iniciar Download</b>.</li>
             <li>O sistema baixa os XMLs e importa automaticamente.</li>
           </ol>
         </div>
-        <div class="tip"><b>Como funciona:</b> empresas com <i>certificado</i> usam a API (rápido); as de <i>login/senha</i> usam a automação do portal. Acompanhe o progresso no painel da própria janela.</div>
+        <div class="tip"><b>Como funciona:</b> empresas com <i>certificado</i> usam a API (rápido); as de <i>login/senha</i> usam a automação do portal. Há ainda <code>Baixar via SIEG</code> para quem usa a SIEG.</div>
       </section>
 
       <section id="pgdas">
         <div class="num">05</div>
         <h2>Importar PGDAS-D</h2>
-        <p>O módulo <code>Importar PGDAS-D</code> lê as declarações do Simples Nacional para validar e comparar com o que o sistema apurou.</p>
+        <p>O módulo <code>Importar PGDAS-D</code> lê as declarações do Simples Nacional (PDF) e consolida o histórico de receitas automaticamente — para validar e comparar com o que o sistema apurou.</p>
         <div class="card">
           <h3><span class="dot"></span>Importação</h3>
           <ol class="steps">
             <li>Acesse <code>Simples Nacional ▸ Importar PGDAS-D</code>.</li>
-            <li>Selecione o PDF do recibo/declaração do PGDAS-D.</li>
-            <li>O sistema extrai os valores e vincula à empresa e competência.</li>
+            <li>Clique em <code>Selecionar PDFs</code> (ou <code>Selecionar Pasta</code> para vários de uma vez). Quem usa o e-CAC pode clicar em <code>Baixar via e-CAC</code>.</li>
+            <li>Clique em <code>Analisar</code>: o sistema extrai os valores e mostra um <b>preview</b> das receitas consolidadas.</li>
+            <li>Se uma competência já existir, escolha <b>Manter existente</b> ou <b>Substituir pelo PGDAS</b>.</li>
+            <li>Clique em <code>Importar Tudo</code>.</li>
           </ol>
         </div>
+        <figure class="shot">
+          <img src="img/06-pgdas.png" alt="Módulo Importar PGDAS-D" loading="lazy">
+          <figcaption>Importar PGDAS-D — seleção de PDFs, análise e preview das receitas antes de gravar.</figcaption>
+        </figure>
       </section>
 
       <section id="das">
         <div class="num">06</div>
         <h2>Calcular DAS (Simples Nacional)</h2>
-        <p>Com as notas importadas, o sistema apura o DAS conforme a LC 123/06 e a Resolução CGSN 140/18.</p>
+        <p>Com as notas importadas, o sistema apura o DAS conforme a LC 123/06 e a Resolução CGSN 140/18, e compara com o PGDAS declarado.</p>
         <div class="card">
           <h3><span class="dot"></span>Apuração</h3>
           <ol class="steps">
             <li>Acesse <code>Simples Nacional ▸ Calcular DAS</code>.</li>
-            <li>Selecione a <b>empresa</b> e a <b>competência</b>.</li>
-            <li>Confira a receita bruta, o anexo e a alíquota efetiva.</li>
-            <li>Compare o valor apurado com o PGDAS-D importado.</li>
+            <li>Selecione a <b>Empresa</b> e o <b>Ano</b> e clique em <code>Calcular</code>.</li>
+            <li>Os cartões mostram <b>RBT12</b>, <b>Faixa Predominante</b>, <b>Alíquota Efetiva</b>, <b>DAS Total</b> e <b>Status</b>.</li>
+            <li>Clique na <b>linha do mês</b> e em <code>Visualizar Memória</code> para ver o cálculo detalhado.</li>
+            <li>Informe o <b>DAS Declarado</b> (opcional) para ver a <b>Divergência</b> em R$ e %.</li>
           </ol>
         </div>
-        <div class="tip"><b>Dica:</b> divergências entre o apurado e o declarado aparecem destacadas — ótimo para conferência antes de entregar.</div>
+        <figure class="shot">
+          <img src="img/07-das.png" alt="Módulo Calcular DAS" loading="lazy">
+          <figcaption>Calcular DAS — cartões de apuração e tabela por competência com DAS calculado x declarado.</figcaption>
+        </figure>
+        <div class="tip"><b>Dica:</b> divergências entre o apurado e o declarado aparecem na coluna <i>Divergência</i> — ótimo para conferência antes de entregar. Atividades do Anexo V usam o <code>Fator R do Mês</code>.</div>
       </section>
 
       <section id="presumido">
@@ -375,12 +421,19 @@
       <section id="extrato">
         <div class="num">08</div>
         <h2>Extrato Fiscal</h2>
-        <p>O <code>Extrato Fiscal</code> reúne, em um só lugar, a movimentação fiscal da empresa por período.</p>
-        <ul class="bullets">
-          <li>Visão consolidada de notas e tributos por competência.</li>
-          <li>Use os filtros de empresa e período para focar no que importa.</li>
-          <li>Exporte para Excel ou PDF quando precisar enviar ao cliente.</li>
-        </ul>
+        <p>O <code>Extrato Fiscal</code> reúne, em um só lugar, a movimentação fiscal da empresa por período — mês a mês, com receita, RBT12, faixa, alíquota efetiva e DAS calculado x declarado.</p>
+        <div class="card">
+          <h3><span class="dot"></span>Gerar extrato</h3>
+          <ol class="steps">
+            <li>Selecione a <b>Empresa</b> e o <b>Ano</b>.</li>
+            <li>Escolha <code>Ano Completo</code> ou <code>Últimos 12 meses</code> e clique em <code>Gerar Extrato</code>.</li>
+            <li>Exporte para <code>Excel</code> ou <code>PDF</code> quando precisar enviar ao cliente.</li>
+          </ol>
+        </div>
+        <figure class="shot">
+          <img src="img/08-extrato.png" alt="Módulo de Extrato Fiscal" loading="lazy">
+          <figcaption>Extrato Fiscal — consolidado mês a mês com totais e exportação em Excel/PDF.</figcaption>
+        </figure>
       </section>
 
       <section id="ia">
@@ -400,11 +453,13 @@
       <section id="config">
         <div class="num">10</div>
         <h2>Configurações</h2>
-        <p>Em <code>Ferramentas ▸ Configurações</code> ficam os ajustes gerais do sistema e as chaves de integração.</p>
+        <p>Em <code>Ferramentas ▸ Configurações</code> ficam as chaves de integração e os parâmetros de automação:</p>
         <ul class="bullets">
-          <li>Parâmetros de funcionamento e integrações.</li>
-          <li>Informações da licença e do ambiente.</li>
+          <li><b>Inteligência Artificial (Groq):</b> chave de API e modelo do assistente fiscal.</li>
+          <li><b>Automação SIEG:</b> login, senha, pasta de download, navegador e modo <i>headless</i> (executar oculto).</li>
+          <li><b>Automação e-Auditoria:</b> login usado na classificação automática de NCMs.</li>
         </ul>
+        <div class="tip"><b>Atenção:</b> esses campos guardam credenciais — preencha apenas no seu computador e clique em <code>Salvar</code>.</div>
       </section>
 
       <section id="suporte">
