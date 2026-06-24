@@ -209,6 +209,53 @@
     color: var(--muted);
   }
 
+  /* ---- Tour guiado ---- */
+  figure.shot { position: relative; }
+  figure.shot[data-tour] { overflow: hidden; }
+  .tour-start {
+    position: absolute; top: 12px; right: 12px; z-index: 6;
+    background: var(--amber); color: var(--midnight);
+    font-family: var(--mono); font-size: 12px; font-weight: 700;
+    border: none; border-radius: 8px; padding: 7px 12px; cursor: pointer;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, .45);
+  }
+  .tour-start:hover { background: var(--amber-dark); }
+  .tour-hot { position: absolute; z-index: 1; }
+  .tour-box {
+    position: absolute; z-index: 4; pointer-events: none; border-radius: 8px;
+    box-shadow: 0 0 0 9999px rgba(8, 12, 22, .62);
+    background-image:
+      linear-gradient(90deg, var(--amber) 50%, transparent 50%),
+      linear-gradient(90deg, var(--amber) 50%, transparent 50%),
+      linear-gradient(0deg, var(--amber) 50%, transparent 50%),
+      linear-gradient(0deg, var(--amber) 50%, transparent 50%);
+    background-size: 12px 2px, 12px 2px, 2px 12px, 2px 12px;
+    background-position: 0 0, 0 100%, 0 0, 100% 0;
+    background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+    animation: tourAnts .6s linear infinite;
+    transition: left .35s ease, top .35s ease, width .35s ease, height .35s ease;
+  }
+  @keyframes tourAnts {
+    to { background-position: 12px 0, -12px 100%, 0 -12px, 100% 12px; }
+  }
+  .tour-pop {
+    position: absolute; z-index: 6; max-width: 280px;
+    background: var(--midnight-2); border: 1px solid var(--amber);
+    border-radius: 10px; padding: 12px 14px;
+    color: var(--snow); font-size: 13px; line-height: 1.5;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .55);
+    transition: left .35s ease, top .35s ease;
+  }
+  .tour-pop .tour-step { font-family: var(--mono); font-size: 11px; color: var(--amber); margin-bottom: 4px; }
+  .tour-pop .tour-nav { display: flex; gap: 8px; margin-top: 10px; }
+  .tour-pop button {
+    font-family: var(--mono); font-size: 12px; cursor: pointer;
+    border-radius: 6px; padding: 5px 10px;
+    border: 1px solid var(--line); background: transparent; color: var(--snow);
+  }
+  .tour-pop button.primary { background: var(--amber); color: var(--midnight); border-color: var(--amber); font-weight: 700; }
+  .tour-pop button:hover { border-color: var(--amber); }
+
   /* ---- Footer ---- */
   footer {
     border-top: 1px solid var(--line);
@@ -354,9 +401,15 @@
         <div class="num">05</div>
         <h2>Notas Fiscais</h2>
         <p>Em <code>Simples Nacional ▸ Notas Fiscais</code> você importa, baixa e consulta as NFS-e e NF-e de cada empresa. No topo ficam as ações <code>+ Nova Nota Manual</code>, <code>Importar XML/ZIP</code>, <code>Baixar via SIEG</code>, <code>Portal Nacional NFS-e</code> e <code>Excluir em Lote</code>. Os filtros (Empresa, Ano, Mês, Tipo) e os painéis <b>CFOP</b>/<b>NCM</b> ajudam na análise.</p>
-        <figure class="shot">
+        <figure class="shot" data-tour>
           <img src="img/05-notas.png" alt="Módulo de Notas Fiscais" loading="lazy">
-          <figcaption>Notas Fiscais — ações de importação/download no topo, filtros e total do período.</figcaption>
+          <button class="tour-start" type="button">▶ Tour guiado</button>
+          <span class="tour-hot" style="left:12.8%;top:6.9%;width:8.7%;height:3.5%" data-tip="<b>Nova Nota Manual</b> — lança uma nota fiscal manualmente. Ótimo para inserir valores fictícios e simular a apuração."></span>
+          <span class="tour-hot" style="left:23.1%;top:6.9%;width:8%;height:3.5%" data-tip="<b>Importar XML/ZIP</b> — importa um ou vários arquivos XML/ZIP de NFS-e e NF-e de uma vez; duplicatas são ignoradas."></span>
+          <span class="tour-hot" style="left:32%;top:6.9%;width:7%;height:3.5%" data-tip="<b>Baixar via SIEG</b> — baixa os XMLs pela SIEG. Exige cadastrar login e senha em Ferramentas ▸ Configurações."></span>
+          <span class="tour-hot" style="left:39.7%;top:6.9%;width:9.4%;height:3.5%" data-tip="<b>Portal Nacional NFS-e</b> — baixa NFS-e direto do Portal Nacional (API com certificado, ou automação por login/senha)."></span>
+          <span class="tour-hot" style="left:50.4%;top:6.9%;width:7.2%;height:3.5%" data-tip="<b>Excluir em Lote</b> — remove de uma vez várias notas selecionadas."></span>
+          <figcaption>Notas Fiscais — ações no topo, filtros e total do período. Clique em <b>▶ Tour guiado</b> para conhecer cada botão.</figcaption>
         </figure>
         <div class="card">
           <h3><span class="dot"></span>Importar XML manualmente</h3>
@@ -534,6 +587,71 @@
     }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
 
     sections.forEach(s => obs.observe(s));
+  })();
+
+  // Tour guiado (marching ants + balão) sobre os screenshots [data-tour]
+  (function () {
+    document.querySelectorAll('figure.shot[data-tour]').forEach(initTour);
+
+    function initTour(fig) {
+      const hots = Array.from(fig.querySelectorAll('.tour-hot'));
+      const startBtn = fig.querySelector('.tour-start');
+      if (!hots.length || !startBtn) return;
+      let box = null, pop = null, idx = 0;
+
+      function start() {
+        idx = 0;
+        box = document.createElement('div'); box.className = 'tour-box';
+        pop = document.createElement('div'); pop.className = 'tour-pop';
+        fig.appendChild(box); fig.appendChild(pop);
+        document.addEventListener('keydown', onKey);
+        render();
+      }
+      function stop() {
+        if (box) box.remove();
+        if (pop) pop.remove();
+        box = pop = null;
+        document.removeEventListener('keydown', onKey);
+      }
+      function onKey(e) {
+        if (e.key === 'Escape') stop();
+        else if (e.key === 'ArrowRight') next();
+        else if (e.key === 'ArrowLeft') prev();
+      }
+      function next() { if (idx < hots.length - 1) { idx++; render(); } else stop(); }
+      function prev() { if (idx > 0) { idx--; render(); } }
+
+      function render() {
+        const h = hots[idx];
+        box.style.left = h.offsetLeft + 'px';
+        box.style.top = h.offsetTop + 'px';
+        box.style.width = h.offsetWidth + 'px';
+        box.style.height = h.offsetHeight + 'px';
+        pop.innerHTML =
+          '<div class="tour-step">Passo ' + (idx + 1) + ' de ' + hots.length + '</div>' +
+          '<div>' + h.getAttribute('data-tip') + '</div>' +
+          '<div class="tour-nav">' +
+            (idx > 0 ? '<button data-a="p">Anterior</button>' : '') +
+            '<button class="primary" data-a="n">' + (idx < hots.length - 1 ? 'Próximo' : 'Concluir') + '</button>' +
+            '<button data-a="s">Pular</button>' +
+          '</div>';
+        const figW = fig.clientWidth, figH = fig.clientHeight;
+        const px = Math.min(Math.max(h.offsetLeft, 8), Math.max(8, figW - 296));
+        const py = h.offsetTop + h.offsetHeight + 10;
+        pop.style.left = px + 'px';
+        pop.style.top = py + 'px';
+        requestAnimationFrame(() => {
+          if (py + pop.offsetHeight > figH - 8) {
+            pop.style.top = Math.max(8, h.offsetTop - pop.offsetHeight - 10) + 'px';
+          }
+        });
+        pop.querySelectorAll('button').forEach(b => b.onclick = () => {
+          const a = b.getAttribute('data-a');
+          if (a === 'n') next(); else if (a === 'p') prev(); else stop();
+        });
+      }
+      startBtn.addEventListener('click', start);
+    }
   })();
 </script>
 </body>
